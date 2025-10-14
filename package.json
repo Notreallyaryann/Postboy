@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-   "dev": "docker-compose up -d && next dev",
-    "build": "next build --turbopack", 
+    "dev": "next dev",
+    "build": "npx prisma generate && next build --turbopack",
+    "postinstall": "npx prisma generate",
+    "build:no-check": "next build --ignore-typescript",
     "start": "next start",
     "lint": "eslint",
-     "check-build": "tsc --noEmit && next build"
+    "check-build": "tsc --noEmit && next build"
   },
   "dependencies": {
     "@ai-sdk/google": "^2.0.16",
@@ -16,6 +18,7 @@
     "@hookform/resolvers": "^5.2.2",
     "@monaco-editor/react": "^4.7.0",
     "@prisma/client": "^6.16.2",
+    "prisma": "^6.16.2",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",
     "@radix-ui/react-aspect-ratio": "^1.1.7",
