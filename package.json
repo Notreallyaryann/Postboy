@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": " next dev --turbopack",
-    "build": "next build --turbopack",
+   "dev": "docker-compose up -d && next dev",
+    "build": "next build --turbopack", 
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+     "check-build": "tsc --noEmit && next build"
   },
   "dependencies": {
     "@ai-sdk/google": "^2.0.16",
