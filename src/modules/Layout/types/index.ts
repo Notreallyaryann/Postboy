@@ -1,7 +1,5 @@
-import type { MEMBER_ROLE } from '@prisma/client';
 
-
-
+export type MEMBER_ROLE = "ADMIN" | "EDITOR" | "VIEWER";
 
 export interface UserProps {
     id: string;
@@ -13,8 +11,8 @@ export interface UserProps {
 } 
 
 export interface MemberProps {
-   id: string;
-    role:MEMBER_ROLE;
+    id: string;
+    role: MEMBER_ROLE; 
     userId: string;
     workspaceId: string;
     createdAt: Date;
@@ -22,11 +20,11 @@ export interface MemberProps {
 }
 
 export interface WorkspaceProps {
-  id: string;
-  name: string;
-  description: string | null;
-  ownerId: string;
-  createdAt: Date;
-  updatedAt: Date;
-  members: MemberProps[];
+    id: string;
+    name: string;
+    description: string | null;
+    ownerId: string;
+    createdAt: Date;
+    updatedAt: Date;
+    members: MemberProps[];
 }
