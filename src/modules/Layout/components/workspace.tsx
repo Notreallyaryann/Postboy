@@ -17,6 +17,12 @@ import { Separator } from "@/components/ui/separator";
 import { useWorkspaces } from "@/modules/workspace/hooks/workspace";
 import { useWorkspaceStore } from "../store";
 
+// Define the Workspace type
+interface Workspace {
+  id: string;
+  name: string;
+  // Add other fields if your workspace has more properties
+}
 
 const WorkSpace = () => {
   const { data: workspaces, isLoading } = useWorkspaces();
@@ -24,14 +30,12 @@ const WorkSpace = () => {
 
   const { selectedWorkspace, setSelectedWorkspace } = useWorkspaceStore();
 
-
   useEffect(() => {
     if (workspaces && workspaces.length > 0 && !selectedWorkspace) {
       setSelectedWorkspace(workspaces[0]);
     }
   }, [workspaces, selectedWorkspace, setSelectedWorkspace]);
 
- 
   if (isLoading) {
     return <Loader className="animate-spin size-4 text-indigo-400" />;
   }
@@ -46,7 +50,7 @@ const WorkSpace = () => {
         <Select
           value={selectedWorkspace?.id}
           onValueChange={(id) => {
-            const ws = workspaces.find((w) => w.id === id);
+            const ws = workspaces.find((w: Workspace) => w.id === id);
             if (ws) setSelectedWorkspace(ws);
           }}
         >
@@ -57,7 +61,7 @@ const WorkSpace = () => {
             </span>
           </SelectTrigger>
           <SelectContent>
-            {workspaces.map((ws) => (
+            {workspaces.map((ws: Workspace) => (
               <SelectItem key={ws.id} value={ws.id}>
                 {ws.name}
               </SelectItem>
@@ -65,7 +69,11 @@ const WorkSpace = () => {
             <Separator className="my-1" />
             <div className="p-2 flex flex-row justify-between items-center">
               <span className="text-sm font-semibold text-zinc-600">My Workspaces</span>
-              <Button size="icon" variant="outline" onClick={() => setIsModalOpen(true)}>
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => setIsModalOpen(true)}
+              >
                 <Plus size={16} className="text-indigo-400" />
               </Button>
             </div>
@@ -79,3 +87,4 @@ const WorkSpace = () => {
 };
 
 export default WorkSpace;
+
