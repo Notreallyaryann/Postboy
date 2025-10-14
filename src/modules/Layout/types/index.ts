@@ -1,5 +1,7 @@
+import type { MEMBER_ROLE } from '@prisma/client';
 
-import { MEMBER_ROLE } from '@prisma/client'
+
+
 
 export interface UserProps {
     id: string;
